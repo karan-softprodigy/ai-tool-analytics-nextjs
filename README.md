@@ -7,13 +7,13 @@ where each fits, and a shared client-side data-fetching hook.
 
 ## Tech stack
 
-| Layer      | Choice                              | Why |
-|------------|---------------------------------------|-----|
-| Framework  | Next.js 14 (App Router)                | File-based routing, built-in API route handlers, RSC support |
-| Language   | TypeScript                              | Typed API responses shared between route handlers and components (`types/index.ts`) |
-| Styling    | Tailwind CSS                             | Consistent design tokens via `tailwind.config.js` |
-| Charts     | Recharts                                  | Rendered client-side; charts are marked `'use client'` |
-| Data       | Route handlers (`app/api/**/route.ts`) over in-memory mock data | Simulated latency and an occasional 503, so loading/error states are real, not just styled |
+| Layer     | Choice                                                          | Why                                                                                        |
+| --------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| Framework | Next.js 14 (App Router)                                         | File-based routing, built-in API route handlers, RSC support                               |
+| Language  | TypeScript                                                      | Typed API responses shared between route handlers and components (`types/index.ts`)        |
+| Styling   | Tailwind CSS                                                    | Consistent design tokens via `tailwind.config.js`                                          |
+| Charts    | Recharts                                                        | Rendered client-side; charts are marked `'use client'`                                     |
+| Data      | Route handlers (`app/api/**/route.ts`) over in-memory mock data | Simulated latency and an occasional 503, so loading/error states are real, not just styled |
 
 ## Getting started
 
@@ -51,10 +51,6 @@ components/
 ├── dashboard/       # KpiCard, UsageChart, ModelBreakdownChart, InsightsList, QueryLogTable
 └── ui/                # Card, Badge, Spinner, EmptyState, ErrorState
 
-lib/          # mockData.ts (seed data), format.ts (number/date formatting)
-hooks/          # useApiData.ts (client fetch hook with loading/error/status)
-types/           # Shared TypeScript interfaces
-```
 
 ## Features
 
@@ -98,7 +94,7 @@ Screenshots live in `/screenshots`. Regenerate them after `npm run dev` by captu
 
 ## Known limitations (by design, for a demo)
 
-- Mock data is regenerated from a fixed seed date (`2026-07-16`) rather than pulling
+- Mock data is regenerated from a fixed seed date rather than pulling
   from a real time-series database.
 - No auth layer — every dashboard route is open, since the focus of this project is the
   analytics UI and App Router data patterns, not access control (covered instead in the
@@ -106,3 +102,4 @@ Screenshots live in `/screenshots`. Regenerate them after `npm run dev` by captu
 - No automated test suite included, to keep the deliverable focused; `useApiData` and
   the route handlers' query-param filtering are the pieces most worth covering first if
   this were extended.
+```
